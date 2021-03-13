@@ -1,0 +1,5 @@
+For number 4
+Include other student information in a database like courses taken and experience.
+For invites:
+1. Add a feature to add others
+2. Have information like discord names or emails for invites.
