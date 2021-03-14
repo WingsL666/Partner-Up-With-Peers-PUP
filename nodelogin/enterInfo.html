@@ -42,16 +42,114 @@
 		}
         
 		</style>
+	    
+	    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+	function importUserInfo(){         
+		var gradeLevel = document.getElementById('gradeLevel').value; 
+		var gender = document.getElementById('gender').value; 
+		var os = document.getElementById('OS').value; 
+        var language = document.getElementById('programmingLanguage').value;
+
+	  result.innerHTML = "";
+
+	  const API_URL = `http://127.0.0.1:8092/api/importInfo/${gradeLevel}-${gender}-${os}-${language}`;
+	  axios.get(`${API_URL}`)
+		 .then(response => {
+			//console.log(response.data.data);
+
+			if (response.data.data.length == 0) {
+			   return;
+			}
+
+			let thead = result.createTHead();
+			let row = thead.insertRow();
+			for (key in response.data.data[0]) {
+			   //console.log(key);
+
+			   let th = document.createElement("th");
+			   let text = document.createTextNode(key);
+			   th.appendChild(text);
+			   row.appendChild(th);
+			}
+			
+			for (x=0; x<response.data.data.length; x++) {
+			   //console.log(response.data.data[x].maker);
+
+			   let row = result.insertRow();
+			   for (k in response.data.data[x]) {
+				  console.log(k);   //displays the result(table)
+
+				  let cell = row.insertCell();
+				  let text = document.createTextNode(response.data.data[x][k]);
+				  cell.appendChild(text);
+
+			   }
+			   
+			}
+		 })
+		 .catch(error =>
+			console.error('importUserInfo', error)
+		 )
+	  }
+
+
+	  function importUserCourse(){         
+		var subject = document.getElementById('subject').value; 
+		var code = document.getElementById('code').value; 
+		var status = document.getElementById('status').value; 
+        var grade = document.getElementById('letterName').value;
+
+	  result.innerHTML = "";
+
+	  const API_URL = `http://127.0.0.1:8092/api/importCourse/${subject}-${code}-${status}-${grade}`;
+	  axios.get(`${API_URL}`)
+		 .then(response => {
+			//console.log(response.data.data);
+
+			if (response.data.data.length == 0) {
+			   return;
+			}
+
+			let thead = result.createTHead();
+			let row = thead.insertRow();
+			for (key in response.data.data[0]) {
+			   //console.log(key);
+
+			   let th = document.createElement("th");
+			   let text = document.createTextNode(key);
+			   th.appendChild(text);
+			   row.appendChild(th);
+			}
+			
+			for (x=0; x<response.data.data.length; x++) {
+			   //console.log(response.data.data[x].maker);
+
+			   let row = result.insertRow();
+			   for (k in response.data.data[x]) {
+				  console.log(k);   //displays the result(table)
+
+				  let cell = row.insertCell();
+				  let text = document.createTextNode(response.data.data[x][k]);
+				  cell.appendChild(text);
+
+			   }
+			   
+			}
+		 })
+		 .catch(error =>
+			console.error('displayPeer', error)
+		 )
+	  }
+</script>
+	    
+	    
+	    
         </head>
         <body>
             <div class="info-form">
                 <h1>Enter Info</h1>
-					<select name="major" id="major" type="major">
-						<option value="CS">Computer Science & Engineering</option>
-						<option value="ME">Mechanical Engineering</option>
-						<option value="EE">Electrical Engineering</option>
-						<option value="bio">Bioengineering</option>	
-				  	</select>
 
 					<select name="gradeLevel" id="gradeLevel" type="course">
 						<option value="first">1st year</option>	
