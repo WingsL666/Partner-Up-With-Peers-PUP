@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const PUP = require("./login.js");
 
 const universities = new CHelper("./data.sqlite");
-const User = new PUP("./data/PUP.sqlite");
+const users = new PUP("./data/PUP.sqlite");
 const app = express();
 
 //enables parsing of json objects
@@ -35,23 +35,34 @@ app.get("/", (req, res, next) => {
   res.json({ message: "Ok" });
 });
 
-const users = [];
+//const users = [];
 
 //goes to sign in page
 app.get("/api/login", (req, res) => {
   res.send("Sign in page");
 });
 
-app.post("/api/login", async (req, res) => {
+app.post("/api/login", async (req, res, next) => {
   try {
-    const password = req.body.password;
+    //const password = req.body.password;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(password);
+    //console.log(password);
     console.log(salt);
     console.log(hashedPassword);
-    const user = { name: req.body.name, password: hashedPassword };
-    users.push(user);
+    const data = {
+      email: req.body.email,
+      password: hashedPassword,
+      salt: salt,
+    };
+    var params = [data.email, data.password, data.salt];
+    users.signIn().then((params) => {
+      res.json({
+        message: "success",
+        data: data,
+      });
+    });
+    //users.push(user);
     res.status(201).send();
   } catch {
     res.status(500).send();

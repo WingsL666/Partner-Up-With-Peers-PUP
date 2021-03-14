@@ -25,6 +25,14 @@ class Login {
       });
     });
   }
+
+  signIn(log_user_email, log_hashed_password, log_salt) {
+    return this.all(
+      "Insert Into login (log_user_email, log_user_id, log_hashed_password, log_salt)" +
+        "VALUES(?, ?, ?)",
+      [log_user_email, log_user_id, log_hashed_password, log_salt]
+    );
+  }
 }
 
 module.exports = login;
