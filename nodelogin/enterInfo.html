@@ -45,19 +45,21 @@
         <body>
             <div class="info-form">
                 <h1>Enter Info</h1>
-				<button onclick = "ex()"> Add Course </button>
+					<select name="box" type="box" onchange = "ex()">
+					<option value="Gender">Gender</option>
+					<option value="Major">Major</option>
+					<option value="Language">Language</option>
+					<option value="CurrentCourse" >Current Course</option>
+					<option value="Grade">Grade</option>
+				  </select>
+				
                 <form action="auth" method="POST">
-                    <select name="box" type="box" onchange = "ex()">
-                        <option value="Major">Major</option>
-                        <option value="Courses">Courses</option>
-                        <option  value="Experience">Experience</option>
-                        <option value="CurrentCourse" >Current Course</option>
-                      </select>
+					<input id = "zero" type="text" name="gender" placeholder="Gender">
                     <input id = "one" type="text" name="major" placeholder="Major">
-					<input id = "two" type="text" name="courses" placeholder="Courses">
-					<input id = "three" type="text" name="experience" placeholder="Experience">
+					<input id = "three" type="text" name="Language" placeholder="Language">
 					<input id = "four" type="text" name="currentcourse" placeholder="Current Course">
                     <input type="submit" name = "submit" placeholder="Submit" required>
+					<input id = "two" type="text" name="grade" placeholder="Grade">
                 </form>
             </div>
             <script>
