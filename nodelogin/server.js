@@ -49,16 +49,11 @@ app.post("/api/login", async (req, res, next) => {
     console.log(password);
     console.log(salt);
     console.log(hashedPassword);
-    try {users.productByMaker(email, id, hashedPassword, salt)
-      .then((data) => {
+    try {users.signIn(email, id, hashedPassword, salt).then((data) => {
         res.json({
           message: "success",
           data: data,
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({ error: err.message });
-        return;
+        })
       });
     //users.push(user);
     res.status(201).send();
@@ -90,7 +85,10 @@ app.use((req, res) => {
   res.status(404);
 });
 
-//start server
-//PORT environment variable's value is set outside this application
-const port = process.env.PORT || 4003;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// Server port
+var HTTP_PORT = 8092
+
+// Start server
+app.listen(HTTP_PORT, () => {
+  console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
+});
