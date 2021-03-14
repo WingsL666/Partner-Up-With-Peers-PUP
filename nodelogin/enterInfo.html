@@ -45,21 +45,73 @@
         <body>
             <div class="info-form">
                 <h1>Enter Info</h1>
-					<select name="box" type="box" onchange = "ex()">
-					<option value="Gender">Gender</option>
-					<option value="Major">Major</option>
-					<option value="Language">Language</option>
-					<option value="CurrentCourse" >Current Course</option>
-					<option value="Grade">Grade</option>
-				  </select>
+					<select name="major" type="major" onchange = "ex()">
+						<option value="placeholder">MajorPlaceholder</option>	
+				  	</select>
+
+					<select name="gradeLevel" type="course" onchange = "ex()">
+						<option value="first">1st year</option>	
+						<option value="second">2nd year</option>
+						<option value="third">3rd year</option>
+						<option value="fourth">4th year</option>
+					</select>
+
+					<select name="course" type="course" onchange = "ex()">
+						<option value="120">CSE 120</option>	
+						<option value="140">CSE 140</option>
+						<option value="100">CSE 100</option>
+						<option value="160">CSE 160</option>
+						<option value="65">ENGR 65</option>
+						<option value="10">WRI 10</option>
+					</select>
+
+					<select name="courseStatus" type="courseStatus" onchange = "ex()">
+						<option value="not taken">Not Taken</option>	
+						<option value="taken">Taken</option>
+						<option value="progress">Progress</option>
+						<option value="plan">Plan to Take</option>
+					</select>
+
+					<select name="letterName" type="letterName" onchange = "ex()">
+						<option value="A">A</option>	
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="P">P</option>
+						<option value="NP">NP</option>
+						<option value="N/A">N/A</option>
+					</select>
+
+					<select name="OS" type="letterName" onchange = "ex()">
+						<option value="win10">Windows 10</option>	
+						<option value="ubuntu">Ubuntu/Linux</option>
+						<option value="win10ubuntu">Windows 10 & Ubuntu subsystem</option>
+						<option value="mac">MAC OS</option>
+						<option value="N/A">N/A</option>
+					</select>
+
+					<select name="programmingLanguage" type="course" onchange = "ex()">
+						<option value="java">Java</option>	
+						<option value="c">C</option>
+						<option value="c++">C++</option>
+						<option value="c#">C#</option>
+						<option value="python">Python</option>
+						<option value="N/A">N/A</option>
+					</select>
+
+					<select name="gender" type="course" onchange = "ex()">
+						<option value="male">Male</option>	
+						<option value="female">Female</option>
+						<option value="N/A">N/A</option>
+					</select>
 				
                 <form action="auth" method="POST">
 					<input id = "zero" type="text" name="gender" placeholder="Gender">
                     <input id = "one" type="text" name="major" placeholder="Major">
 					<input id = "three" type="text" name="Language" placeholder="Language">
 					<input id = "four" type="text" name="currentcourse" placeholder="Current Course">
-                    <input type="submit" name = "submit" placeholder="Submit" required>
 					<input id = "two" type="text" name="grade" placeholder="Grade">
+                    <input type="submit" name = "submit" placeholder="Submit" required>
+					
                 </form>
             </div>
             <script>
