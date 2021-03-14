@@ -38,10 +38,12 @@
             <div class="login-form">
                 <h1>Enter Info</h1>
                 <form action="auth" method="POST">
-                    <input type="text" name="major" placeholder="major" required>
-                    <input type="text" name="skills" placeholder="Language" required>
-                    <input type="text" name="classes_taken" placeholder="Classes Taken" required>
-                    <input type="text" name="current" placeholder="Currently Needs Help For" required>
+                    <select id="cars" name="submit" type="submit">
+                        <option value="Major">Major</option>
+                        <option value="Courses">Courses</option>
+                        <option value="Experience">Experience</option>
+                        <option value="CurrentCourse" >CurrentCourse</option>
+                      </select>
                     <input type="submit" name = "submit" placeholder="Submit" required>
                 </form>
             </div>
