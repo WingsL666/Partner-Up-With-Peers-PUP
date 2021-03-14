@@ -46,7 +46,10 @@
             <div class="info-form">
                 <h1>Enter Info</h1>
 					<select name="major" type="major" onchange = "ex()">
-						<option value="placeholder">MajorPlaceholder</option>	
+						<option value="CS">Computer Science & Engineering</option>
+						<option value="ME">Mechanical Engineering</option>
+						<option value="EE">Electrical Engineering</option>
+						<option value="bio">Bioengineering</option>	
 				  	</select>
 
 					<select name="gradeLevel" type="course" onchange = "ex()">
@@ -105,13 +108,7 @@
 					</select>
 				
                 <form action="auth" method="POST">
-					<input id = "zero" type="text" name="gender" placeholder="Gender">
-                    <input id = "one" type="text" name="major" placeholder="Major">
-					<input id = "three" type="text" name="Language" placeholder="Language">
-					<input id = "four" type="text" name="currentcourse" placeholder="Current Course">
-					<input id = "two" type="text" name="grade" placeholder="Grade">
                     <input type="submit" name = "submit" placeholder="Submit" required>
-					
                 </form>
             </div>
             <script>
