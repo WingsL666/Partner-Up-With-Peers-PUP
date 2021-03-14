@@ -4,25 +4,32 @@
 	<meta charset="utf-8">
 	<title>Enter Student Info</title>
     <style>
-		.login-form {
+		.info-form {
 			width: 300px;
 			margin: 0 auto;
 			font-family: Tahoma, Geneva, sans-serif;
 		}
-		.login-form h1 {
+		.info-form h1 {
 			text-align: center;
 			color: #4d4d4d;
 			font-size: 24px;
 			padding: 20px 0 20px 0;
 		}
-        .login-form input[type="text"] {
+        .info-form input[type="text"] {
 			width: 100%;
 			padding: 15px;
 			border: 1px solid #dddddd;
 			margin-bottom: 15px;
 			box-sizing:border-box;
 		}
-        .login-form input[type="submit"] {
+        .info-form select[type="box"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #dddddd;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+        .info-form input[type="submit"] {
 			width: 100%;
 			padding: 15px;
 			background-color: #535b63;
@@ -32,20 +39,31 @@
 			font-weight: bold;
 			color: #ffffff;
 		}
+        
 		</style>
         </head>
         <body>
-            <div class="login-form">
+            <div class="info-form">
                 <h1>Enter Info</h1>
+				<button onclick = "ex()"> Add Course </button>
                 <form action="auth" method="POST">
-                    <select id="cars" name="submit" type="submit">
+                    <select name="box" type="box" onchange = "ex()">
                         <option value="Major">Major</option>
                         <option value="Courses">Courses</option>
-                        <option value="Experience">Experience</option>
-                        <option value="CurrentCourse" >CurrentCourse</option>
+                        <option  value="Experience">Experience</option>
+                        <option value="CurrentCourse" >Current Course</option>
                       </select>
+                    <input id = "one" type="text" name="major" placeholder="Major">
+					<input id = "two" type="text" name="courses" placeholder="Courses">
+					<input id = "three" type="text" name="experience" placeholder="Experience">
+					<input id = "four" type="text" name="currentcourse" placeholder="Current Course">
                     <input type="submit" name = "submit" placeholder="Submit" required>
                 </form>
             </div>
+            <script>
+                function ex(){
+                    document.getElementById("two").stlye.display = "initial"; //should make text boxes
+                }
+            </script>
         </body>
 </html>
