@@ -11,23 +11,38 @@
         font-family: Tahoma, Geneva, sans-serif;
     }
     .login-form h1 {
-			text-align: center;
-			color: #4d4d4d;
-			font-size: 24px;
-			padding: 20px 0 20px 0;
-		}
+		text-align: center;
+		color: #4d4d4d;
+		font-size: 24px;
+		padding: 20px 0 20px 0;
+	}
     .login-form input[type="submit"] {
-			width: 100%;
-			padding: 15px;
-			background-color: #535b63;
-			border: 0;
-            margin-bottom: 15px;
-			box-sizing: border-box;
-			cursor: pointer;
-			font-weight: bold;
-			color: #ffffff;
+		width: 100%;
+		padding: 15px;
+		background-color: #535b63;
+		border: 0;
+        margin-bottom: 15px;
+		box-sizing: border-box;
+		cursor: pointer;
+		font-weight: bold;
+		color: #ffffff;
 		}
-        
+    .button{
+        background-color: #4CAF50; /* Green */
+        position:absolute;
+        width: 20%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border: none;
+        color: white;
+        padding: 12px 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 0;
+        cursor: pointer;
+    }    
     </style>
 	    
 	    
@@ -83,12 +98,12 @@
         <div class="login-form">
             <h1>View</h1>
             <form action="enterInfo.html" method="POST"> <!--Show SQL Data-->
-                <input type="submit" name = "submit" placeholder="submit" required>
+                <input type="submit" name = "submit" value="Enter Info" required>
             </form>
         </div>
 	    
 	<br>
-        <button class="buttonPeer" onclick="displayPeers()">See Peers around</button>
+        <button class="button buttonPeer" onclick="displayPeers()">See Peers around</button>
 
         <table name="resultPeerInfo" id="resultPeerInfo"></table>
 
