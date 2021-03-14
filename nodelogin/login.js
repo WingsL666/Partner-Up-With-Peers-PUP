@@ -31,6 +31,11 @@ class Login {
       "INSERT INTO login (log_user_email, log_user_id, log_hashed_password, log_salt) VALUES (?, ?, ?, ?);",[log_user_email, log_user_id, log_hashed_password, log_salt]
     )
   }
+
+  allPeerInfo(info_user_id){
+    return this.all("select * from userInfo where info_user_id != ? ;", [info_user_id])
+  }
+
 }
 
 module.exports = Login;

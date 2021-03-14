@@ -8,7 +8,7 @@ const PUP = require("./login");
 const users = new PUP("./data/PUP.sqlite");
 const app = express();
 
-const global_user_id;/////////////////////////////////////////////////////////add a global var
+var global_user_id;
 
 //enables parsing of json objects
 app.use(express.json());
@@ -42,28 +42,27 @@ app.get("/api/login", (req, res) => {
 });
 
 app.post("/api/login", async (req, res, next) => {
-    const id = 1;
-  
+    const email = req.body.email;
+    const id = req.body.id;
+
     global_user_id = id; ////////////////////////////////////////////////////
   
-    const email = req.body.email;
-    const password = req.body.password;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(email);
-    console.log(password);
-    console.log(salt);
-    console.log(hashedPassword);
+    //console.log(email);
+    //console.log(password);
+    //console.log(salt);
+    //console.log(hashedPassword);
+
     try {users.signIn(email, id, hashedPassword, salt).then((data) => {
         res.json({
           message: "success",
           data: data,
         })
       });
-    //users.push(user);
-    res.status(201).send();
   } catch {
-    res.status(500).send();
+    res.status(400).json({"error": err.message})
+    return;
   }
 });
 
@@ -79,7 +78,8 @@ app.post("/api/login/auth", async (req, res) => {
       res.send("Incorrect Password");
     }
   } catch {
-    res.status(500).send();
+    res.status(400).json({"error": err.message})
+    return;
   }
 });
 
