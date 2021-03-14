@@ -27,6 +27,55 @@
 		}
         
     </style>
+	    
+	    
+   <script>
+       function displayPeers(){         
+         var result = document.getElementById('resultPeerInfo');
+
+         result.innerHTML = "";
+
+         const API_URL = `http://127.0.0.1:8092/api/peerInfo`;
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+
+               if (response.data.data.length == 0) {
+                  return;
+               }
+
+               let thead = result.createTHead();
+               let row = thead.insertRow();
+               for (key in response.data.data[0]) {
+                  //console.log(key);
+
+                  let th = document.createElement("th");
+                  let text = document.createTextNode(key);
+                  th.appendChild(text);
+                  row.appendChild(th);
+               }
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  let row = result.insertRow();
+                  for (k in response.data.data[x]) {
+                     console.log(k);   //displays the result(table)
+
+                     let cell = row.insertCell();
+                     let text = document.createTextNode(response.data.data[x][k]);
+                     cell.appendChild(text);
+
+                  }
+                  
+               }
+            })
+            .catch(error =>
+               console.error('displayPeer', error)
+            )
+         }
+   </script>
+	    
     </head>
     <body>
         <div class="login-form">
@@ -35,5 +84,13 @@
                 <input type="submit" name = "submit" placeholder="submit" required>
             </form>
         </div>
+	    
+	<br>
+        <button class="buttonPeer" onclick="displayPeers()">See Peers around</button>
+
+        <table name="resultPeerInfo" id="resultPeerInfo"></table>
+
+        <br>
+	    
     </body>
 </html>
