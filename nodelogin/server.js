@@ -1,13 +1,10 @@
 //=======THIS WHERE FUNCTIONS ARE BEING CALLED=======
 
 // Create express app
-const University = require("./universities");
-const CHelper = require("./universities");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const PUP = require("./login");
 
-const universities = new CHelper("./data.sqlite");
 const users = new PUP("./data/PUP.sqlite");
 const app = express();
 
@@ -50,25 +47,20 @@ app.post("/api/login", async (req, res, next) => {
     //console.log(password);
     console.log(salt);
     console.log(hashedPassword);
-    const data = {
-      email: req.body.email,
-      password: hashedPassword,
-      salt: salt,
-    };
-    var sql =
-      "INSERT INTO login (log_user_email, log_user_id, log_hashed_password, log_salt) VALUES (?,?,?,?)";
-    var params = [data.email, data.password, data.salt];
-    db.run(sql, params, function (err, result) {
-      if (err) {
+    const id = 1;
+    const email = req.body.email;
+    //var params = [data.email, data.password, data.salt];
+    users.productByMaker(email, id, password, salt)
+      .then((data) => {
+        res.json({
+          message: "success",
+          data: data,
+        });
+      })
+      .catch((err) => {
         res.status(400).json({ error: err.message });
         return;
-      }
-      res.json({
-        message: "success",
-        data: data,
-        id: this.lastID,
       });
-    });
     //users.push(user);
     res.status(201).send();
   } catch {
@@ -101,5 +93,5 @@ app.use((req, res) => {
 
 //start server
 //PORT environment variable's value is set outside this application
-const port = process.env.PORT || 4002;
+const port = process.env.PORT || 4005;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -18,7 +18,7 @@ Create table login(
     log_user_email char(50) PRIMARY KEY, 
     log_user_id char(50) UNIQUE,
     log_hashed_password char(150), 
-    log_salt char(11)
+    log_salt char(50)
 );
 
 Create table userInfo(
