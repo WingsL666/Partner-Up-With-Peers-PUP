@@ -5,7 +5,7 @@ const University = require("./universities");
 const CHelper = require("./universities");
 const express = require("express");
 const bcrypt = require("bcrypt");
-const PUP = require("./login.js");
+const PUP = require("./login");
 
 const universities = new CHelper("./data.sqlite");
 const users = new PUP("./data/PUP.sqlite");
@@ -55,11 +55,17 @@ app.post("/api/login", async (req, res, next) => {
       password: hashedPassword,
       salt: salt,
     };
+    var sql = "INSERT INTO user (name, email, password) VALUES (?,?,?)";
     var params = [data.email, data.password, data.salt];
-    users.signIn().then((params) => {
+    db.run(sql, params, function (err, result) {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
       res.json({
         message: "success",
         data: data,
+        id: this.lastID,
       });
     });
     //users.push(user);
