@@ -40,17 +40,16 @@ app.get("/api/login", (req, res) => {
 });
 
 app.post("/api/login", async (req, res, next) => {
-  try {
-    //const password = req.body.password;
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    //console.log(password);
-    console.log(salt);
-    console.log(hashedPassword);
     const id = 1;
     const email = req.body.email;
-    //var params = [data.email, data.password, data.salt];
-    users.productByMaker(email, id, password, salt)
+    const password = req.body.password;
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    console.log(email);
+    console.log(password);
+    console.log(salt);
+    console.log(hashedPassword);
+    try {users.productByMaker(email, id, hashedPassword, salt)
       .then((data) => {
         res.json({
           message: "success",
@@ -93,5 +92,5 @@ app.use((req, res) => {
 
 //start server
 //PORT environment variable's value is set outside this application
-const port = process.env.PORT || 4005;
+const port = process.env.PORT || 4003;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
