@@ -28,16 +28,20 @@ Create table userInfo(
     info_OS char(20),
     info_language char(20), --most familar language use
     CHECK ( info_grade IN ('1st year', '2nd year', '3rd year', '4th year') ),
-    CHECK ( info_gender IN ('Female', 'Male', 'N/A') )
+    CHECK ( info_gender IN ('Female', 'Male', 'N/A') ),
+    CHECK ( info_OS IN ('Windows 10', 'Ubuntu/Linux', 'Windows 10 & Ubuntu subsystem', 'MAC OS','N/A' ) ),
+    CHECK ( info_language IN ('Java', 'C', 'C++', 'C#', 'Python', 'N/A') )
 );
 
 
 Create table courseUserTake(
     ct_user_id char(50), 
-    ct_subject char(10), 
+    ct_subject char(10),
     ct_code char(5), 
     ct_status char(15),
     ct_letter_grade char(5), 
+    CHECK ( ct_subject IN ('cse', 'engr', 'wri') ),
+    CHECK ( ct_code IN ('120', '140', '100', '160', '65', '010') ),
     CHECK ( ct_status IN ('taken', 'not taken', 'in progress', 'plan to take') ),
     CHECK ( ct_letter_grade IN ('A', 'B', 'C', 'P', 'NP', 'N/A') )
 );
@@ -70,7 +74,7 @@ INSERT INTO course VALUES('cse', 140, 'Computer Architecture');
 INSERT INTO course VALUES('cse', 100, 'Algorithm and Design');
 INSERT INTO course VALUES('cse', 160, 'Computer Networking');
 INSERT INTO course VALUES('engr', 65, 'Circuit Theory');
-INSERT INTO course VALUES('wri', 010, 'Composition Writing');
+INSERT INTO course VALUES('wri', 010, 'Composition Writing');	
 
 
 
