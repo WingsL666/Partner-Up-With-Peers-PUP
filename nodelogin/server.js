@@ -8,6 +8,8 @@ const PUP = require("./login");
 const users = new PUP("./data/PUP.sqlite");
 const app = express();
 
+const global_user_id;/////////////////////////////////////////////////////////add a global var
+
 //enables parsing of json objects
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,6 +43,9 @@ app.get("/api/login", (req, res) => {
 
 app.post("/api/login", async (req, res, next) => {
     const id = 1;
+  
+    global_user_id = id; ////////////////////////////////////////////////////
+  
     const email = req.body.email;
     const password = req.body.password;
     const salt = await bcrypt.genSalt();
@@ -79,6 +84,21 @@ app.post("/api/login/auth", async (req, res) => {
 });
 
 // Insert here other API endpoints
+
+//get the info of peers
+app.get("/api/peerInfo", (req, res, next) => { //
+    login.allPeerInfo(global_user_id) /////////////////////////////////////
+        .then((info) => { //
+            res.json({
+                "message": `${global_user_id}`,//////////////////////////////
+                "data": info //
+            })
+        })
+        .catch((err) => {
+            res.status(400).json({ "error": err.message });
+            return;
+        })    
+});
 
 // Default response for any other request
 app.use((req, res) => {
