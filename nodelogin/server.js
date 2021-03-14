@@ -1,4 +1,4 @@
-//=======THIS WHERE FUNTIONS ARE BEING CALLED=======
+//=======THIS WHERE FUNCTIONS ARE BEING CALLED=======
 
 // Create express app
 const University = require("./universities");
