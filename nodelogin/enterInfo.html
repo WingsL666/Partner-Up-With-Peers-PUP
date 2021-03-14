@@ -45,6 +45,7 @@
         <body>
             <div class="info-form">
                 <h1>Enter Info</h1>
+				<button onclick = "ex()"> Add Course </button>
                 <form action="auth" method="POST">
                     <select name="box" type="box" onchange = "ex()">
                         <option value="Major">Major</option>
@@ -61,7 +62,7 @@
             </div>
             <script>
                 function ex(){
-                    document.getElementById("one").stlye.display = "none";
+                    document.getElementById("two").stlye.display = "initial"; //should make text boxes
                 }
             </script>
         </body>
