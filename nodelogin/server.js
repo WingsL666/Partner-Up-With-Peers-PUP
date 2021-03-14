@@ -100,6 +100,38 @@ app.get("/api/peerInfo", (req, res, next) => { //
         })    
 });
 
+//get input from user about userInfo
+app.get("/api/importInfo/:grade-:gender-:os-:language", (req, res, next) => { //
+    login.importUserInfo(global_user_id, req.params.grade, req.params.gender, req.params.os, req.params.language) 
+        .then((info) => { //
+            res.json({
+                "message": `${global_user_id} by ${req.params.grade} by ${req.params.gender} by ${req.params.os} by ${req.params.language}`,
+                "data": info //
+            })
+        })
+        .catch((err) => {
+            res.status(400).json({ "error": err.message });
+            return;
+        })    
+});
+
+
+//get input from user about userCourse
+app.get("/api/importCourse/:subject-:code-:status-:grade", (req, res, next) => { //
+  login.importUserCourse(global_user_id, req.params.subject, req.params.code, req.params.status, req.params.grade) 
+      .then((info) => { //
+          res.json({
+              "message": `${global_user_id} by ${req.params.subject} by ${req.params.code} by ${req.params.status} by ${req.params.grade}`,
+              "data": info //
+          })
+      })
+      .catch((err) => {
+          res.status(400).json({ "error": err.message });
+          return;
+      })    
+});
+
+
 // Default response for any other request
 app.use((req, res) => {
   res.status(404);
